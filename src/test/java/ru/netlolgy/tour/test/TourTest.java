@@ -32,89 +32,97 @@ public class TourTest {
 
     @Test
     void shouldCheckValidApprovedByCard() {
-        MainPage.mainPage();
         MainPage.choiceByCard();
         FormFilling.getApprovedCard();
-        FormFilling.sendingValidPage();
+        FormFilling.checkValidPage();
         FormFilling.getBankApproval();
     }
 
     @Test
     void shouldCheckValidApprovedOnCredit() {
-        MainPage.mainPage();
         MainPage.choiceOnCredit();
         FormFilling.getApprovedCard();
-        FormFilling.sendingValidPage();
+        FormFilling.checkValidPage();
         FormFilling.getBankApproval();
     }
 
     @Test
     void shouldCheckValidDeclinedByCard() {
-        MainPage.mainPage();
         MainPage.choiceByCard();
         FormFilling.getDeclinedCard();
-        FormFilling.sendingValidPage();
+        FormFilling.checkValidPage();
         FormFilling.getBankRefusal();
     }
 
     @Test
     void shouldCheckValidDeclinedOnCredit() {
-        MainPage.mainPage();
         MainPage.choiceOnCredit();
         FormFilling.getDeclinedCard();
-        FormFilling.sendingValidPage();
+        FormFilling.checkValidPage();
         FormFilling.getBankRefusal();
     }
 
     @Test
     void shouldCheckInvalidByCard() {
-        MainPage.mainPage();
         MainPage.choiceByCard();
         FormFilling.getRandomCard();
-        FormFilling.sendingInvalidPage();
-        FormFilling.invalidFieldsResponse();
+        FormFilling.checkInvalidPage();
+        FormFilling.getAllInvalidFields();
     }
 
     @Test
     void shouldCheckInvalidOnCredit() {
-        MainPage.mainPage();
         MainPage.choiceOnCredit();
         FormFilling.getRandomCard();
-        FormFilling.sendingInvalidPage();
-        FormFilling.invalidFieldsResponse();
+        FormFilling.checkInvalidPage();
+        FormFilling.getAllInvalidFields();
     }
 
     @Test
     void shouldCheckEmptyByCard() {
-        MainPage.mainPage();
         MainPage.choiceByCard();
-        FormFilling.sendingEmptyPage();
-        FormFilling.emptyFieldsResponse();
+        FormFilling.getEmptyCard();
+        FormFilling.checkEmptyPage();
+        FormFilling.getEmptyFieldsResponse();
     }
 
     @Test
     void shouldCheckEmptyOnCredit() {
-        MainPage.mainPage();
         MainPage.choiceOnCredit();
-        FormFilling.sendingEmptyPage();
-        FormFilling.emptyFieldsResponse();
+        FormFilling.getEmptyCard();
+        FormFilling.checkEmptyPage();
+        FormFilling.getEmptyFieldsResponse();
     }
 
     @Test
     void shouldCheckInvalidMonthAndYearByCard() {
-        MainPage.mainPage();
         MainPage.choiceByCard();
         FormFilling.getApprovedCard();
-        FormFilling.sendingInvalidMonthAndYear();
-        FormFilling.invalidMonthAndYearResponse();
+        FormFilling.checkInvalidMonthAndYear();
+        FormFilling.getInvalidMonthAndYearResponse();
     }
 
     @Test
     void shouldCheckInvalidMonthAndYearOnCredit() {
-        MainPage.mainPage();
         MainPage.choiceOnCredit();
         FormFilling.getDeclinedCard();
-        FormFilling.sendingInvalidMonthAndYear();
-        FormFilling.invalidMonthAndYearResponse();
+        FormFilling.checkInvalidMonthAndYear();
+        FormFilling.getInvalidMonthAndYearResponse();
+    }
+
+    @Test
+    void shouldCheckInvalidHolderByCard() {
+        MainPage.choiceByCard();
+        FormFilling.getDeclinedCard();
+        FormFilling.checkInvalidHolder();
+        FormFilling.getAllInvalidHolder();
+    }
+
+    @Test
+    void shouldCheckInvalidHolderOnCredit() {
+        MainPage.choiceOnCredit();
+        FormFilling.getDeclinedCard();
+        FormFilling.checkInvalidHolder();
+        FormFilling.getAllInvalidHolder();
     }
 }

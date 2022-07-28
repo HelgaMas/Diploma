@@ -7,16 +7,16 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
 
-    public static void mainPage() {
-        $(".heading").shouldHave(Condition.text("Путешествие дня"));
-        $(withText("Купить")).click();
-    }
 
     public static void choiceByCard() {
+        $(".heading").shouldHave(Condition.text("Путешествие дня"));
+        $(withText("Купить")).click();
         $(withText("Оплата по карте")).shouldBe(Condition.visible);
     }
 
     public static void choiceOnCredit() {
-        $(withText("Купить в кредит")).shouldBe(Condition.visible);
+        $(".heading").shouldHave(Condition.text("Путешествие дня"));
+        $(withText("Купить в кредит")).click();
+        $(withText("Кредит по данным карты")).shouldBe(Condition.visible);
     }
 }

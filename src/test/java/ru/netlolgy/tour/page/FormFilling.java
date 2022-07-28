@@ -3,6 +3,7 @@ package ru.netlolgy.tour.page;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import ru.netlolgy.tour.data.DataGenerator;
 
 import java.time.Duration;
 import java.util.Locale;
@@ -10,6 +11,8 @@ import java.util.Locale;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static ru.netlolgy.tour.data.DataGenerator.*;
+
 
 public class FormFilling {
     private static SelenideElement cardNumber = $("[placeholder=\"0000 0000 0000 0000\"]");
@@ -30,33 +33,28 @@ public class FormFilling {
     private static SelenideElement emptyCVC = $x("//*[contains(.,'CVC/CVV')]//span[contains(.,'Неверный формат')]");
 
 
-    private static Faker faker = new Faker(new Locale("en"));
-
-    public static void getApprovedCard() {
-        cardNumber.setValue("4444444444444441");
+    public static void getApprovedCard(){
+        cardNumber.setValue(String.valueOf(approvedCard()));
     }
 
-    public static void getDeclinedCard() {
-        cardNumber.setValue("4444444444444442");
+    public static void getDeclinedCard(){
+        cardNumber.setValue(String.valueOf(declinedCard()));
     }
 
-    public static void getRandomCard() {
-        String randomCard = faker.finance().creditCard();
-        cardNumber.setValue(randomCard);
+    public static void getEmptyCard(){
+        cardNumber.setValue(String.valueOf(emptyCard()));
     }
 
-    public static String getRandomName() {
-        String name = faker.name().firstName();
-        String surname = faker.name().lastName();
-        String randomName = name + " " + surname;
-        return randomName;
+    public static void getRandomCard(){
+        cardNumber.setValue(String.valueOf(randomCard()));
     }
 
-    public static void sendingValidPage() {
-        month.setValue(String.valueOf(faker.number().numberBetween(10,12)));
-        year.setValue(String.valueOf(faker.number().numberBetween(22,26)));
-        holder.setValue(getRandomName());
-        cvc.setValue(String.valueOf(faker.number().numberBetween(111,999)));
+
+    public static void checkValidPage() {
+        month.setValue(String.valueOf(getRandomValidMonth()));
+        year.setValue(String.valueOf(getRandomValidYear()));
+        holder.setValue(getRandomValidHolder());
+        cvc.setValue(String.valueOf(getRandomValidCvc()));
         continueButton.click();
     }
 
@@ -65,19 +63,19 @@ public class FormFilling {
                 ("Операция одобрена Банком."), Duration.ofSeconds(15));
     }
 
-    public static void sendingInvalidPage() {
-        month.setValue("1%");
-        year.setValue("2#");
-        holder.setValue("Ольга Маслова-Маслова12*");
-        cvc.setValue("7-");
+    public static void checkInvalidPage() {
+        month.setValue(String.valueOf(getInvalidMonth()));
+        year.setValue(String.valueOf(getInvalidYear()));
+        holder.setValue(getInvalidHolder());
+        cvc.setValue(String.valueOf(getInvalidCvc()));
         continueButton.click();
     }
 
-    public static void sendingInvalidMonthAndYear() {
-        month.setValue("17");
-        year.setValue("20");
-        holder.setValue(getRandomName());
-        cvc.setValue(String.valueOf(faker.number().numberBetween(111,999)));
+    public static void checkInvalidMonthAndYear() {
+        month.setValue(String.valueOf(getFalseMonth()));
+        year.setValue(String.valueOf(getPastYear()));
+        holder.setValue(getRandomValidHolder());
+        cvc.setValue(String.valueOf(getRandomValidCvc()));
         continueButton.click();
     }
 
@@ -86,33 +84,43 @@ public class FormFilling {
                 ("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15));
     }
 
-    public static void invalidMonthAndYearResponse() {
+    public static void getInvalidMonthAndYearResponse() {
         invalidMonth.shouldBe(Condition.visible);
         invalidYear.shouldBe(Condition.visible);
     }
 
-    public static void sendingEmptyPage() {
-        cardNumber.setValue("");
-        month.setValue("");
-        year.setValue("");
-        holder.setValue("");
-        cvc.setValue("");
+    public static void checkEmptyPage() {
+        cardNumber.setValue(String.valueOf(emptyCard()));
+        month.setValue(String.valueOf(getEmptyMonth()));
+        year.setValue(String.valueOf(getEmptyYear()));
+        holder.setValue(String.valueOf(getEmptyHolder()));
+        cvc.setValue(String.valueOf(getEmptyCvc()));
         continueButton.click();
     }
 
-    public static void invalidFieldsResponse() {
+    public static void getAllInvalidFields() {
         emptyCardNumber.shouldBe(Condition.visible);
         emptyMonth.shouldBe(Condition.visible);
         emptyYear.shouldBe(Condition.visible);
-        invalidHolder.shouldBe(Condition.visible);
         emptyCVC.shouldBe(Condition.visible);
     }
 
-    public static void emptyFieldsResponse() {
+    public static void getEmptyFieldsResponse() {
         emptyCardNumber.shouldBe(Condition.visible);
         emptyMonth.shouldBe(Condition.visible);
         emptyYear.shouldBe(Condition.visible);
         emptyHolder.shouldBe(Condition.visible);
         emptyCVC.shouldBe(Condition.visible);
+    }
+    public static void checkInvalidHolder() {
+        month.setValue(String.valueOf(getRandomValidMonth()));
+        year.setValue(String.valueOf(getRandomValidYear()));
+        holder.setValue(getInvalidHolder());
+        cvc.setValue(String.valueOf(getRandomValidCvc()));
+        continueButton.click();
+    }
+
+    public static void getAllInvalidHolder() {
+        invalidHolder.shouldBe(Condition.visible);
     }
 }
