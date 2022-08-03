@@ -1,8 +1,12 @@
 package ru.netlolgy.tour.data;
 
 import com.github.javafaker.Faker;
+import lombok.SneakyThrows;
 import lombok.Value;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import java.sql.DriverManager;
 import java.util.Locale;
 
 public class DataGenerator {
@@ -10,6 +14,8 @@ public class DataGenerator {
     }
 
     private static Faker faker = new Faker(new Locale("en"));
+
+
 
     @Value
     public static class CardInfo {
@@ -61,7 +67,7 @@ public class DataGenerator {
     }
 
     public static int getRandomValidMonth() {
-        int month = faker.number().numberBetween(10,12);
+        int month = faker.number().numberBetween(10, 12);
         return month;
     }
 
@@ -83,7 +89,7 @@ public class DataGenerator {
     }
 
     public static int getRandomValidYear() {
-        int month = faker.number().numberBetween(22,26);
+        int month = faker.number().numberBetween(22, 26);
         return month;
     }
 
@@ -105,7 +111,7 @@ public class DataGenerator {
     }
 
     public static int getRandomValidCvc() {
-        int cvc = faker.number().numberBetween(111,999);
+        int cvc = faker.number().numberBetween(111, 999);
         return cvc;
     }
 

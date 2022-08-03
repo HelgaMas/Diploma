@@ -7,10 +7,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ru.netlolgy.tour.data.SQLRequests;
 import ru.netlolgy.tour.page.FormFilling;
 import ru.netlolgy.tour.page.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TourTest {
 
@@ -36,6 +38,8 @@ public class TourTest {
         FormFilling.getApprovedCard();
         FormFilling.checkValidPage();
         FormFilling.getBankApproval();
+
+        assertEquals("APPROVED", SQLRequests.getStatusByCard());
     }
 
     @Test
@@ -44,6 +48,9 @@ public class TourTest {
         FormFilling.getApprovedCard();
         FormFilling.checkValidPage();
         FormFilling.getBankApproval();
+
+        assertEquals("APPROVED", SQLRequests.getStatusOnCredit());
+
     }
 
     @Test
@@ -52,6 +59,8 @@ public class TourTest {
         FormFilling.getDeclinedCard();
         FormFilling.checkValidPage();
         FormFilling.getBankRefusal();
+
+        assertEquals("DECLINED", SQLRequests.getStatusByCard());
     }
 
     @Test
@@ -60,6 +69,8 @@ public class TourTest {
         FormFilling.getDeclinedCard();
         FormFilling.checkValidPage();
         FormFilling.getBankRefusal();
+
+        assertEquals("DECLINED", SQLRequests.getStatusOnCredit());
     }
 
     @Test
