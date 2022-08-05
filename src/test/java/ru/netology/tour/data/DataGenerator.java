@@ -1,4 +1,4 @@
-package ru.netlolgy.tour.data;
+package ru.netology.tour.data;
 
 import com.github.javafaker.Faker;
 import lombok.SneakyThrows;

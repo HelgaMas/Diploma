@@ -1,4 +1,4 @@
-package ru.netlolgy.tour.page;
+package ru.netology.tour.page;
 
 import com.codeborne.selenide.Condition;
 

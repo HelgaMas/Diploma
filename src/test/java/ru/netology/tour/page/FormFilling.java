@@ -1,17 +1,14 @@
-package ru.netlolgy.tour.page;
+package ru.netology.tour.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
-import ru.netlolgy.tour.data.DataGenerator;
+import ru.netology.tour.data.DataGenerator;
 
 import java.time.Duration;
-import java.util.Locale;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static ru.netlolgy.tour.data.DataGenerator.*;
 
 
 public class FormFilling {
@@ -34,27 +31,27 @@ public class FormFilling {
 
 
     public static void getApprovedCard(){
-        cardNumber.setValue(String.valueOf(approvedCard()));
+        cardNumber.setValue(String.valueOf(DataGenerator.approvedCard()));
     }
 
     public static void getDeclinedCard(){
-        cardNumber.setValue(String.valueOf(declinedCard()));
+        cardNumber.setValue(String.valueOf(DataGenerator.declinedCard()));
     }
 
     public static void getEmptyCard(){
-        cardNumber.setValue(String.valueOf(emptyCard()));
+        cardNumber.setValue(String.valueOf(DataGenerator.emptyCard()));
     }
 
     public static void getRandomCard(){
-        cardNumber.setValue(String.valueOf(randomCard()));
+        cardNumber.setValue(String.valueOf(DataGenerator.randomCard()));
     }
 
 
     public static void checkValidPage() {
-        month.setValue(String.valueOf(getRandomValidMonth()));
-        year.setValue(String.valueOf(getRandomValidYear()));
-        holder.setValue(getRandomValidHolder());
-        cvc.setValue(String.valueOf(getRandomValidCvc()));
+        month.setValue(String.valueOf(DataGenerator.getRandomValidMonth()));
+        year.setValue(String.valueOf(DataGenerator.getRandomValidYear()));
+        holder.setValue(DataGenerator.getRandomValidHolder());
+        cvc.setValue(String.valueOf(DataGenerator.getRandomValidCvc()));
         continueButton.click();
     }
 
@@ -64,18 +61,18 @@ public class FormFilling {
     }
 
     public static void checkInvalidPage() {
-        month.setValue(String.valueOf(getInvalidMonth()));
-        year.setValue(String.valueOf(getInvalidYear()));
-        holder.setValue(getInvalidHolder());
-        cvc.setValue(String.valueOf(getInvalidCvc()));
+        month.setValue(String.valueOf(DataGenerator.getInvalidMonth()));
+        year.setValue(String.valueOf(DataGenerator.getInvalidYear()));
+        holder.setValue(DataGenerator.getInvalidHolder());
+        cvc.setValue(String.valueOf(DataGenerator.getInvalidCvc()));
         continueButton.click();
     }
 
     public static void checkInvalidMonthAndYear() {
-        month.setValue(String.valueOf(getFalseMonth()));
-        year.setValue(String.valueOf(getPastYear()));
-        holder.setValue(getRandomValidHolder());
-        cvc.setValue(String.valueOf(getRandomValidCvc()));
+        month.setValue(String.valueOf(DataGenerator.getFalseMonth()));
+        year.setValue(String.valueOf(DataGenerator.getPastYear()));
+        holder.setValue(DataGenerator.getRandomValidHolder());
+        cvc.setValue(String.valueOf(DataGenerator.getRandomValidCvc()));
         continueButton.click();
     }
 
@@ -90,11 +87,11 @@ public class FormFilling {
     }
 
     public static void checkEmptyPage() {
-        cardNumber.setValue(String.valueOf(emptyCard()));
-        month.setValue(String.valueOf(getEmptyMonth()));
-        year.setValue(String.valueOf(getEmptyYear()));
-        holder.setValue(String.valueOf(getEmptyHolder()));
-        cvc.setValue(String.valueOf(getEmptyCvc()));
+        cardNumber.setValue(String.valueOf(DataGenerator.emptyCard()));
+        month.setValue(String.valueOf(DataGenerator.getEmptyMonth()));
+        year.setValue(String.valueOf(DataGenerator.getEmptyYear()));
+        holder.setValue(String.valueOf(DataGenerator.getEmptyHolder()));
+        cvc.setValue(String.valueOf(DataGenerator.getEmptyCvc()));
         continueButton.click();
     }
 
@@ -113,10 +110,10 @@ public class FormFilling {
         emptyCVC.shouldBe(Condition.visible);
     }
     public static void checkInvalidHolder() {
-        month.setValue(String.valueOf(getRandomValidMonth()));
-        year.setValue(String.valueOf(getRandomValidYear()));
-        holder.setValue(getInvalidHolder());
-        cvc.setValue(String.valueOf(getRandomValidCvc()));
+        month.setValue(String.valueOf(DataGenerator.getRandomValidMonth()));
+        year.setValue(String.valueOf(DataGenerator.getRandomValidYear()));
+        holder.setValue(DataGenerator.getInvalidHolder());
+        cvc.setValue(String.valueOf(DataGenerator.getRandomValidCvc()));
         continueButton.click();
     }
 

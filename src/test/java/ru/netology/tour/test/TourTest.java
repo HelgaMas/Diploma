@@ -1,15 +1,12 @@
-package ru.netlolgy.tour.test;
+package ru.netology.tour.test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import ru.netlolgy.tour.data.SQLRequests;
-import ru.netlolgy.tour.page.FormFilling;
-import ru.netlolgy.tour.page.MainPage;
+import ru.netology.tour.data.SQLRequests;
+import ru.netology.tour.page.FormFilling;
+import ru.netology.tour.page.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,7 +36,7 @@ public class TourTest {
         FormFilling.checkValidPage();
         FormFilling.getBankApproval();
 
-        assertEquals("APPROVED", SQLRequests.getStatusByCard());
+        Assertions.assertEquals("APPROVED", SQLRequests.getStatusByCard());
     }
 
     @Test
