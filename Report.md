@@ -35,7 +35,8 @@
 
 Не успешных тест-кейсов - 60%
 
-![](C:\work)
+![отчет](https://user-images.githubusercontent.com/97524452/183942783-7d0c3810-bfb4-45b2-bdcc-6b40dcbb0664.png)
+
 
 </details>
 
