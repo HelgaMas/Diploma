@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
 
-
     public static void choiceByCard() {
         $(".heading").shouldHave(Condition.text("Путешествие дня"));
         $(withText("Купить")).click();

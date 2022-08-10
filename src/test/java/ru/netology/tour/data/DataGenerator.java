@@ -1,12 +1,10 @@
 package ru.netology.tour.data;
 
 import com.github.javafaker.Faker;
-import lombok.SneakyThrows;
-import lombok.Value;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
 
-import java.sql.DriverManager;
+import lombok.Value;
+
+
 import java.util.Locale;
 
 public class DataGenerator {
@@ -14,7 +12,6 @@ public class DataGenerator {
     }
 
     private static Faker faker = new Faker(new Locale("en"));
-
 
 
     @Value
@@ -39,6 +36,14 @@ public class DataGenerator {
         return randomCard;
     }
 
+    public static CardInfo zeroCard() {
+        return new CardInfo("0000000000000000");
+    }
+
+    public static CardInfo someSymbolsCard() {
+        return new CardInfo("1234");
+    }
+
     @Value
     public static class HolderInfo {
         public String holder;
@@ -58,6 +63,11 @@ public class DataGenerator {
 
     public static String getEmptyHolder() {
         String holder = "";
+        return holder;
+    }
+
+    public static String getZeroHolder() {
+        String holder = "0000000";
         return holder;
     }
 
@@ -83,6 +93,10 @@ public class DataGenerator {
         return new MonthInfo("");
     }
 
+    public static MonthInfo getZeroMonth() {
+        return new MonthInfo("00");
+    }
+
     @Value
     public static class YearInfo {
         public String year;
@@ -105,6 +119,10 @@ public class DataGenerator {
         return new YearInfo("");
     }
 
+    public static YearInfo getZeroYear() {
+        return new YearInfo("00");
+    }
+
     @Value
     public static class CvcInfo {
         public String cvc;
@@ -121,5 +139,9 @@ public class DataGenerator {
 
     public static CvcInfo getEmptyCvc() {
         return new CvcInfo("");
+    }
+
+    public static CvcInfo getZeroCvc() {
+        return new CvcInfo("000");
     }
 }
